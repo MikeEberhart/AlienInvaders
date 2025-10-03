@@ -57,11 +57,11 @@ public class StormController : MonoBehaviour
         }
         rb.linearVelocity = new Vector2(speed * -1, movementDirection * speed);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Boundary"))
+        if (collision.gameObject.CompareTag("ObjectBoundary"))
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

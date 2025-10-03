@@ -10,13 +10,17 @@ TagManager:
   - Building
   - MovingRoad
   - BuildingSpawner
-  - LBuilding
-  - MBuilding
-  - SBuilding
-  - RightLimit
   - Boundary
   - Shields
+  - ObjectBoundary
+  - PlasmaShot
+  - UFO
+  - Timer
+  - RightObjBoundary
   - Bullet
+  - Missle
+  - MisslePowerUp
+  - ShieldPowerUp
   layers:
   - Default
   - TransparentFX

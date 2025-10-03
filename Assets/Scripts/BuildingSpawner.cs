@@ -32,13 +32,6 @@ public class BuildingSpawner : MonoBehaviour
             time = 0f;
         }
     }
-
-    //private void SpawnBuilding()
-    //{
-    //    LeftSpawner();
-    //    //RightSpawner();
-    //}
-
     private void SpawnBuilding()
     {
         randomBuilding01 = Random.Range(0, 3);
@@ -61,23 +54,4 @@ public class BuildingSpawner : MonoBehaviour
         }
         building01.transform.position = new Vector2(leftSpawn.transform.position.x, yVal);
     }
-
-    //private void RightSpawner()
-    //{
-    //    randomBuilding02 = Random.Range(0, 3);
-    //    Debug.Log(randomBuilding02);
-    //    if(randomBuilding02 == 0)
-    //    {
-    //        building02 = Instantiate(sBuilding);
-    //    }
-    //    else if(randomBuilding02 == 1)
-    //    {
-    //        building02 = Instantiate(mBuilding);
-    //    }
-    //    else if(randomBuilding02 == 2)
-    //    {
-    //        building02 = Instantiate(lBuilding);
-    //    }
-    //    building02.transform.position = new Vector2(rightSpawn.transform.position.x, rightSpawn.transform.position.y);
-    //}
 }

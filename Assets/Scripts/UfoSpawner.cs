@@ -7,6 +7,7 @@ public class UfoSpawner : MonoBehaviour
     private GameObject spawnedUfo;
     public GameObject ufoUpperYSpawn;
     public GameObject ufoLowerYSpawn;
+    public GameObject playerJet;
     private float time;
     public float delay;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,5 +31,6 @@ public class UfoSpawner : MonoBehaviour
     {
         spawnedUfo = Instantiate(ufo);
         spawnedUfo.transform.position = new Vector2(ufoLowerYSpawn.transform.position.x, Random.Range(ufoLowerYSpawn.transform.position.y, ufoUpperYSpawn.transform.position.y));
+        spawnedUfo.GetComponent<UfoController>().PassPlayerObject(playerJet);
     }
 }

@@ -15,8 +15,15 @@ public class BuildingController : MonoBehaviour
     {
         moveLeft();
     }
-     private void moveLeft()
+    private void moveLeft()
     {
         rb.linearVelocity = new Vector2(speed * -1, 0);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ObjectBoundary"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
