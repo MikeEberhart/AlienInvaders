@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 3.333333, y: 3.333333, z: 3.333333}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9188775099996099595}
+  - {fileID: 8683835519770362732}
   m_Father: {fileID: 8148906495323777819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &879467265252925286
@@ -94,7 +94,7 @@ Transform:
   m_GameObject: {fileID: 1626152246669774159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.99, y: 2.75, z: 0}
+  m_LocalPosition: {x: -6.923, y: 2.787, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56cb79696458ca4895158bce71c4623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  shields: {fileID: 745639554263680258}
   speed: 5
   missleCooldown: 0
 --- !u!114 &9188634052232720937
@@ -356,10 +357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpecialWeaponHandler
   missle: {fileID: 7489220367300065637, guid: 4de1a44aa0b746c4bada82667abe899e, type: 3}
   nuke: {fileID: 1424302974804879372, guid: ac62426337f83a8478fec5435ce10532, type: 3}
-  shields: {fileID: 3535293819483448208, guid: fe8d0718039c01d48a25bf23f7db5ff0, type: 3}
   missleLauncher: {fileID: 1848464018754949302}
   nukeLauncher: {fileID: 879467265252925286}
-  shieldMount: {fileID: 643360752035150562}
 --- !u!1 &1848464018754949302
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +421,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8148906495323777819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4346204433621856757
+--- !u!1001 &4275861933463168658
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -479,8 +478,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe8d0718039c01d48a25bf23f7db5ff0, type: 3}
---- !u!4 &9188775099996099595 stripped
+--- !u!1 &745639554263680258 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3535293819483448208, guid: fe8d0718039c01d48a25bf23f7db5ff0, type: 3}
+  m_PrefabInstance: {fileID: 4275861933463168658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8683835519770362732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4888032474941810174, guid: fe8d0718039c01d48a25bf23f7db5ff0, type: 3}
-  m_PrefabInstance: {fileID: 4346204433621856757}
+  m_PrefabInstance: {fileID: 4275861933463168658}
   m_PrefabAsset: {fileID: 0}

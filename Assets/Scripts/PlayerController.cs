@@ -6,13 +6,15 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    BasicWeaponHandler basicWeapon;
-    SpecialWeaponHandler specialWeapon;
-    Rigidbody2D rb;
+    private BasicWeaponHandler basicWeapon;
+    private SpecialWeaponHandler specialWeapon;
+    //GUIBtnHandler guiBtns;
+    private Rigidbody2D rb;
     public GameObject shields;
     //decided to go with static object here instead of passing the object through multiple scripts
     public static GameObject playerJet;
     public float speed = 5f;
+    private int currPlayerScore;
     private float time;
     private float delay;
     public float missleCooldown;
@@ -28,25 +30,44 @@ public class PlayerController : MonoBehaviour
         tempCooldown = missleCooldown;
         rb = GetComponent<Rigidbody2D>();
         basicWeapon = gameObject.GetComponent<BasicWeaponHandler>();
-        specialWeapon = gameObject.GetComponent<SpecialWeaponHandler>(); 
+        specialWeapon = gameObject.GetComponent<SpecialWeaponHandler>();
+        //guiBtns = gameObject.AddComponent<GUIBtnHandler>();
         shields.SetActive(false);
+        //specialWeapon.SetShieldActivation(false);
         cooldownActive = false;
         shieldsEquipped = false;
         shieldsActive = false;
         misslesEquipped = false;
         playerJet = this.gameObject;
+        currPlayerScore = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
-        PlayerKeyBindings();
+        //used to check if the game is paused or not
+        if (Time.timeScale != 0f)
+        {
+            PlayerMovement();
+            PlayerKeyBindings();
+        }
         tempCooldown -= Time.deltaTime;
         if (tempCooldown <= 0)
         {
             cooldownActive = false;
         }
+    }
+    //public void SetPlayerScore(int score)
+    //{
+    //    currPlayerScore = score;
+    //}
+    public int GetPlayerScore()
+    {
+        return currPlayerScore;
+    }
+    public void UpdatePlayerScore(int score)
+    {
+        currPlayerScore += score;
     }
     private void PlayerKeyBindings()
     {
@@ -59,6 +80,7 @@ public class PlayerController : MonoBehaviour
             //shields.SetActive(true);
             if(shieldsEquipped)
             {
+                //specialWeapon.SetShieldActivation(true);
                 shields.SetActive(true);
                 shieldsActive = true;
                 //specialWeapon.ShieldsOnline();
@@ -108,30 +130,13 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("PlasmaShot"))
         {
-            //if no shields then gameover
-            //if shields then shot destorys shields giving player another chance
-            if (!shieldsEquipped)
-            {
-                //gameover
-                SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-            }
-            else if(!shieldsActive)
-            {
-                SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-            }
-            else
-            {
-                //-1 from shields
-                Destroy(other.gameObject);
-                shields.SetActive(false);
-                shieldsActive = false;
-                shieldsEquipped = false;
-            }
+            ShieldHandler(other.gameObject);
             Debug.Log("Game Over PlasmShot");
         }
         else if (other.gameObject.CompareTag("ShieldPowerUp"))
         {
             Destroy(other.gameObject);
+            //specialWeapon.ShieldsEquipped();
             shieldsEquipped = true;
             //needs bool and something to check if shields are already online
             //or could have player push a button to turn on shields
@@ -141,6 +146,33 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             misslesEquipped = true;
         }    
+    }
+    private void ShieldHandler(GameObject gObject)
+    {
+        //if no shields then gameover
+        //if shields then shot destorys shields giving player another chance
+        if (!shieldsEquipped)
+        {
+            //gameover
+            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        }
+        else if (!shieldsActive)
+        {
+            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        }
+        else
+        {
+            //-1 from shields
+            if(!gObject.CompareTag("UFO") && !gObject.CompareTag("Building") && !gObject.CompareTag("StormCloud"))
+            {
+                Destroy(gObject);
+            }
+            //Destroy(gObject);
+            shields.SetActive(false);
+            //specialWeapon.SetShieldActivation(false);
+            shieldsActive = false;
+            shieldsEquipped = false;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

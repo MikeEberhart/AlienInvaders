@@ -3,7 +3,8 @@ using UnityEngine;
 public class HorizontalFireControl : MonoBehaviour
 {
     public float speed;
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
+    private int weaponDamage;
     //private float time;
     //public float fireRate;
 
@@ -11,12 +12,21 @@ public class HorizontalFireControl : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        weaponDamage = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         TravelRight();
+    }
+    public void SetWeaponDMG(int wDMG)
+    {
+        weaponDamage = wDMG;
+    }
+    public int GetWeaponDMG()
+    {
+        return weaponDamage;
     }
     private void TravelRight()
     {

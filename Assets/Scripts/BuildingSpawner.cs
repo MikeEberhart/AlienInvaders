@@ -36,7 +36,7 @@ public class BuildingSpawner : MonoBehaviour
     {
         randomBuilding01 = Random.Range(0, 3);
         //float yVal;
-        Debug.Log(randomBuilding01);
+        //Debug.Log(randomBuilding01);
         if(randomBuilding01 == 0)
         {
             yVal = -2.62f;

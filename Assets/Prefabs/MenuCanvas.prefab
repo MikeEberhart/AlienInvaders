@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 7903016487801209605}
   - component: {fileID: 7039152897130564563}
   - component: {fileID: 6139637433448617087}
-  - component: {fileID: 1114126271216928350}
   m_Layer: 5
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -135,7 +134,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -181,18 +180,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1114126271216928350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210007395899640525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4973b191031d8cb439871d4f262f3559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LoadGUI
 --- !u!1 &2445158641757363258
 GameObject:
   m_ObjectHideFlags: 0

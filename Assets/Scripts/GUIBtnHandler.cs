@@ -6,26 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class GUIBtnHandler : MonoBehaviour
 {
-    public GameObject menu;
+    public GameObject menuGUI;
     public GameObject highScoresGUI;
-    //public Canvas menuBackground;
     public TMP_Text exitBtn;
     public TMP_Text playBtn;
     public TMP_Text guideBtn;
-    //public GameObject gameMenu;
 
     private bool gameSceneLoaded;
     private bool gamePaused;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameSceneLoaded = false;
         gamePaused = false;
+        menuGUI.SetActive(true);
         highScoresGUI.SetActive(false);
-        //SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-        //SceneManager.LoadScene("BtnBackground", LoadSceneMode.Additive);
     }
 
     // Update is called once per frame
@@ -33,29 +29,13 @@ public class GUIBtnHandler : MonoBehaviour
     {
         KeyBindings();
     }
-    private void ManageActiveScene()
-    {
-        Scene currScene = SceneManager.GetActiveScene();
-        if(currScene == SceneManager.GetSceneByName("MainMenu"))
-        {
-
-        }
-        else if(currScene == SceneManager.GetSceneByName("GameScene"))
-        {
-
-        }
-        else if(currScene == SceneManager.GetSceneByName("HighScores"))
-        {
-
-        }
-    }
     public void PlayGame() // play/resume
     {
         Scene currScene = SceneManager.GetActiveScene();
-        if (currScene == SceneManager.GetSceneByName("MainMenu") || currScene == SceneManager.GetSceneByName("HighScores"))
+        if (currScene == SceneManager.GetSceneByName("MainMenu"))
         {
             DontDestroyOnLoad(gameObject);
-            menu.SetActive(false);
+            menuGUI.SetActive(false);
             gameSceneLoaded = true;
             SceneManager.LoadScene("GameScene");
             Debug.Log("Start Game");
@@ -72,9 +52,9 @@ public class GUIBtnHandler : MonoBehaviour
         //Debug.Log("Restart Game/Guide");
         if (currScene == SceneManager.GetSceneByName("MainMenu"))
         {
-            Debug.Log("Game Info");
+            //Debug.Log("Game Info");
             DontDestroyOnLoad(gameObject);
-            menu.SetActive(false);
+            menuGUI.SetActive(false);
             SceneManager.LoadScene("GameGuide");
         }
         else if(currScene == SceneManager.GetSceneByName("GameScene"))
@@ -89,27 +69,32 @@ public class GUIBtnHandler : MonoBehaviour
     {
         Debug.Log("Show High Scores");
         Scene currScene = SceneManager.GetActiveScene();
-        if(currScene == SceneManager.GetSceneByName("MainMenu"))
+        //do I need two of these?? would one be good?
+        //is there anything else i might put here?
+        if (currScene == SceneManager.GetSceneByName("MainMenu"))
         {
-            DontDestroyOnLoad(gameObject);
-            menu.SetActive(false);
-            SceneManager.LoadScene("HighScores");
+            menuGUI.SetActive(false);
             highScoresGUI.SetActive(true);
-            gameSceneLoaded = true;
         }
         else if(currScene == SceneManager.GetSceneByName("GameScene"))
         {
-            SceneManager.LoadScene("HighScores");
-            PauseGame();
+            menuGUI.SetActive(false);
             highScoresGUI.SetActive(true);
-            gameSceneLoaded = true;
         }
     }
     public void ExitGame()
-    {
-        //only works on a full build
-        //Debug.Log("Exit Game");
-        Application.Quit();
+    { 
+        Scene currScene = SceneManager.GetActiveScene();
+        if (currScene == SceneManager.GetSceneByName("MainMenu"))
+        {
+            //only works on a full build
+            //Debug.Log("Exit Game");
+            Application.Quit();
+        }
+        else if(currScene == SceneManager.GetSceneByName("GameScene"))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
     private void KeyBindings()
     {
@@ -124,7 +109,7 @@ public class GUIBtnHandler : MonoBehaviour
     {
         if (!gamePaused)
         {
-            menu.SetActive(true);
+            menuGUI.SetActive(true);
             Time.timeScale = 0;
             gamePaused = true;
             exitBtn.text = "Main Menu";
@@ -133,12 +118,25 @@ public class GUIBtnHandler : MonoBehaviour
         }
         else
         {
-            menu.SetActive(false);
+            menuGUI.SetActive(false);
             Time.timeScale = 1;
             gamePaused = false;
             exitBtn.text = "Exit";
             playBtn.text = "Play";
             guideBtn.text = "Guide";
+        }
+    }
+    public void BackButton()
+    {
+        Scene currScene = SceneManager.GetActiveScene();
+        if (currScene == SceneManager.GetSceneByName("MainMenu") || currScene == SceneManager.GetSceneByName("GameScene"))
+        {
+            highScoresGUI.SetActive(false);
+            menuGUI.SetActive(true);
+        }
+        else if(currScene == SceneManager.GetSceneByName("GameGuide"))
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

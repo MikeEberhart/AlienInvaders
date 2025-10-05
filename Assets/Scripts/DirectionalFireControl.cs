@@ -29,7 +29,7 @@ public class DirectionalFireControl : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("ObjectBoundary"))
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

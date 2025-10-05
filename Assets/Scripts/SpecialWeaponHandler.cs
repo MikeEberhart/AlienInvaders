@@ -7,11 +7,14 @@ public class SpecialWeaponHandler : MonoBehaviour
 {
     public GameObject missle;
     public GameObject nuke;
-    public GameObject shields;
+    //public GameObject shields;
     public GameObject missleLauncher;
     public GameObject nukeLauncher;
-    public GameObject shieldMount;
+    //public GameObject shieldMount;
     private GameObject spawnedWeapon;
+    //private GameObject spawnedShield;
+    //public float shieldHealth;
+
     //private float time;
     //private float 
 
@@ -35,13 +38,22 @@ public class SpecialWeaponHandler : MonoBehaviour
         spawnedWeapon.transform.position = new Vector2(xPos, yPos);
     }
 
-    //public void ShieldsOnline()
+    //public void ShieldsEquipped()
     //{
     //    Debug.Log("shields online");
-    //    float xPos = shieldMount.transform.position.x;
-    //    float yPos = shieldMount.transform.position.y;
-    //    spawnedWeapon = Instantiate(shields);
-    //    spawnedWeapon.transform.position = new Vector2(xPos, yPos);
-    //    spawnedWeapon.transform.SetParent(shieldMount.transform);
+    //    //float xPos = shieldMount.transform.position.x;
+    //    //float yPos = shieldMount.transform.position.y;
+    //    spawnedShield = Instantiate(shields);
+    //    spawnedShield.transform.SetParent(shieldMount.transform);
+    //    spawnedShield.transform.position = new Vector2(0, 0);
+    //    spawnedShield.SetActive(false);
+    //}
+    //public void SetShieldActivation(bool isActive)
+    //{
+    //    spawnedShield.SetActive(isActive);
+    //}
+    //public void ShieldsDepleted()
+    //{
+    //    Destroy(spawnedShield);
     //}
 }
