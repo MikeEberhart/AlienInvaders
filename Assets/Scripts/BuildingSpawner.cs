@@ -28,7 +28,7 @@ public class BuildingSpawner : MonoBehaviour
         {
             //spawn the building
             SpawnBuilding();
-            //resets the delay for the next building
+            //resets the bronzeUfoTimer for the next building
             time = 0f;
         }
     }

@@ -400,7 +400,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 21880574}
-  - component: {fileID: 21880575}
   m_Layer: 0
   m_Name: Spawners
   m_TagString: Untagged
@@ -429,18 +428,6 @@ Transform:
   - {fileID: 495551305}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &21880575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21880573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3b71a69525b2cf459cd2d9f524479c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GlobalSpawner
 --- !u!1 &206794692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,10 +1293,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 674730969}
     - target: {fileID: 2075528585747707831, guid: 5057b82bdfdf6f94db5a156313956b63, type: 3}
-      propertyPath: gameplayGUI
-      value: 
-      objectReference: {fileID: 1663460080}
-    - target: {fileID: 2075528585747707831, guid: 5057b82bdfdf6f94db5a156313956b63, type: 3}
       propertyPath: missleCooldown
       value: 5
       objectReference: {fileID: 0}
@@ -1343,7 +1326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8148906495323777819, guid: 5057b82bdfdf6f94db5a156313956b63, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.8
+      value: -7.357
       objectReference: {fileID: 0}
     - target: {fileID: 8148906495323777819, guid: 5057b82bdfdf6f94db5a156313956b63, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1564,7 +1547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StormSpawner
   spawner: {fileID: 818186617}
   stormClouds: {fileID: 6888990773358802478, guid: 47211538bfd3795409477a9d41fb5bb6, type: 3}
-  delay: 20
+  delay: 15
 --- !u!4 &818186619
 Transform:
   m_ObjectHideFlags: 0
@@ -1574,7 +1557,7 @@ Transform:
   m_GameObject: {fileID: 818186617}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 3, z: 0}
+  m_LocalPosition: {x: 4.9799995, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1626,6 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacbfa7bc76bdcb4c859303666696f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UfoSpawner
+  gameplayGUI: {fileID: 1663460080}
   ufoList:
   - {fileID: 2416189827646538072, guid: 4d5dc6201441d0843b7975851e5f8860, type: 3}
   - {fileID: 5471727696169854271, guid: fa226898a25cba24594ff76219cd7d49, type: 3}
@@ -1633,14 +1617,9 @@ MonoBehaviour:
   ufoUpperYSpawn: {fileID: 1875130106}
   ufoLowerYSpawn: {fileID: 701397593}
   playerJet: {fileID: 1661704003}
-  bronzeCooldownMin: 2
-  bronzeCooldownMax: 3
-  silverCooldownMin: 12
-  silverCooldownMax: 18
-  goldCooldownMin: 22
-  goldCooldownMax: 32
-  spawnDelay: 1
-  speedAdjustment: 2.5
+  bronzeCooldown: 2
+  silverCooldown: 4
+  goldCooldown: 6
 --- !u!1 &935769168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,7 +1963,7 @@ Transform:
   m_GameObject: {fileID: 1156848113}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.23, y: 5, z: 0}
+  m_LocalPosition: {x: 14.15, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

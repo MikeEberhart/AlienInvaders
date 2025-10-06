@@ -8,7 +8,7 @@ public class StormController : MonoBehaviour
     private float curYVal;
     public float yMidPoint;
     private float movementDirection;
-    private float limitDiff; //could be public and used to change/pass the var to change the limit params
+    public float limitDiff; //could be public and used to change/pass the var to change the limit params
     private float upperLimit;
     private float lowerLimit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,9 +16,7 @@ public class StormController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         movementDirection = setRandomDirection();
-        //made this into a var so limitDiff can be adjust at one point only
-        //also can me adjust to maybe change the limit as the level advances
-        limitDiff = 1.5f;
+        //limitDiff = 1.5f;
         upperLimit = yMidPoint + limitDiff;
         lowerLimit = yMidPoint - limitDiff;
         

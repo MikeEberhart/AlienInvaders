@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    private HighScoreHandler hsHandler;
+    private ScoreHandler sHandler;
+    public GameObject gameplayGUI;
     private BasicWeaponHandler basicWeapon;
     private SpecialWeaponHandler specialWeapon;
     //GUIBtnHandler guiBtns;
@@ -14,7 +17,8 @@ public class PlayerController : MonoBehaviour
     //decided to go with static object here instead of passing the object through multiple scripts
     public static GameObject playerJet;
     public float speed = 5f;
-    private int currPlayerScore;
+    private int currScore;
+    private int highScore;
     private float time;
     private float delay;
     public float missleCooldown;
@@ -31,6 +35,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         basicWeapon = gameObject.GetComponent<BasicWeaponHandler>();
         specialWeapon = gameObject.GetComponent<SpecialWeaponHandler>();
+        hsHandler = gameplayGUI.GetComponent<HighScoreHandler>();
+        sHandler = gameplayGUI.GetComponent<ScoreHandler>();
         //guiBtns = gameObject.AddComponent<GUIBtnHandler>();
         shields.SetActive(false);
         //specialWeapon.SetShieldActivation(false);
@@ -38,8 +44,12 @@ public class PlayerController : MonoBehaviour
         shieldsEquipped = false;
         shieldsActive = false;
         misslesEquipped = false;
+        currScore = 0;
+        //highScore = hsHandler.GetHighestScore();
+        //maybe look into passing via scripts and collisions rather than static
+        //though there will only ever be one playerJet so should be any issue I dont think
         playerJet = this.gameObject;
-        currPlayerScore = 0;
+
     }
 
     // Update is called once per frame
@@ -57,17 +67,21 @@ public class PlayerController : MonoBehaviour
             cooldownActive = false;
         }
     }
-    //public void SetPlayerScore(int score)
-    //{
-    //    currPlayerScore = score;
-    //}
     public int GetPlayerScore()
     {
-        return currPlayerScore;
+        return currScore;
     }
     public void UpdatePlayerScore(int score)
     {
-        currPlayerScore += score;
+        currScore += score;
+    }
+    public int GetHighScore()
+    {
+        return highScore;
+    }
+    public void SetHighScore(int hs)
+    {
+        highScore = hs;
     }
     private void PlayerKeyBindings()
     {
@@ -101,13 +115,39 @@ public class PlayerController : MonoBehaviour
             //only one nuke per power up
         }
     }
-
     private void PlayerMovement()
     {
         float xPos = Input.GetAxisRaw("Horizontal");
         float yPos = Input.GetAxisRaw("Vertical");
         Vector2 pMove = new Vector2(xPos, yPos).normalized;
         rb.linearVelocity = pMove * speed;
+    }
+    private void ShieldHandler(GameObject gObject)
+    {
+        //if no shields then gameover
+        //if shields then shot destorys shields giving player another chance
+        if (!shieldsEquipped)
+        {
+            //gameover
+            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        }
+        else if (!shieldsActive)
+        {
+            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        }
+        else
+        {
+            //-1 from shields
+            if (!gObject.CompareTag("UFO") && !gObject.CompareTag("Building") && !gObject.CompareTag("StormCloud"))
+            {
+                Destroy(gObject);
+            }
+            //Destroy(gObject);
+            shields.SetActive(false);
+            //specialWeapon.SetShieldActivation(false);
+            shieldsActive = false;
+            shieldsEquipped = false;
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -130,7 +170,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("PlasmaShot"))
         {
-            ShieldHandler(other.gameObject);
+            //ShieldHandler(other.gameObject);
             Debug.Log("Game Over PlasmShot");
         }
         else if (other.gameObject.CompareTag("ShieldPowerUp"))
@@ -145,33 +185,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             misslesEquipped = true;
-        }    
-    }
-    private void ShieldHandler(GameObject gObject)
-    {
-        //if no shields then gameover
-        //if shields then shot destorys shields giving player another chance
-        if (!shieldsEquipped)
-        {
-            //gameover
-            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
-        else if (!shieldsActive)
+        else if(other.gameObject.CompareTag("Coin"))
         {
-            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-        }
-        else
-        {
-            //-1 from shields
-            if(!gObject.CompareTag("UFO") && !gObject.CompareTag("Building") && !gObject.CompareTag("StormCloud"))
-            {
-                Destroy(gObject);
-            }
-            //Destroy(gObject);
-            shields.SetActive(false);
-            //specialWeapon.SetShieldActivation(false);
-            shieldsActive = false;
-            shieldsEquipped = false;
+            UpdatePlayerScore(other.GetComponent<CoinData>().GetCoinValue());
+            other.GetComponent<CoinData>().DestoryCoin();
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

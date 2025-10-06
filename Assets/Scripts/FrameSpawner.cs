@@ -21,7 +21,7 @@ public class FrameSpawner : MonoBehaviour
         if (time >= delay)
         {
             SpawnFrame();
-            //reset time so the delay is set for the next object to spawn
+            //reset time so the bronzeUfoTimer is set for the next object to spawn
             time = 0f;
         }
     }

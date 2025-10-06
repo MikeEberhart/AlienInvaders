@@ -10,6 +10,7 @@ public class UfoData : MonoBehaviour
     public GameObject healthBar;
     public int ufoValue;
     public float fireRate;
+    public float speed;
 
     private void Start()
     {
@@ -20,10 +21,10 @@ public class UfoData : MonoBehaviour
     {
         return ufoValue;
     }
-    public void SetUfoValue(int value)
-    {
-        ufoValue = value;
-    }
+    //public void SetUfoValue(int value)
+    //{
+    //    ufoValue = value;
+    //}
     public float GetUfoFireRate()
     {
         return fireRate;
@@ -31,6 +32,14 @@ public class UfoData : MonoBehaviour
     public void SetUfoFireRate(float fRate)
     {
         fireRate = fRate;
+    }
+    public float GetUfoSpeed()
+    {
+        return speed;
+    }
+    public void SetUfoSpeed(float spd)
+    {
+        speed = spd;
     }
     public void DestoryUfo()
     {

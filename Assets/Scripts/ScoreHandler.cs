@@ -11,10 +11,8 @@ public class ScoreHandler : MonoBehaviour
     private PlayerController pController;
     private HighScoreHandler hsHandler;
     private GameClock gClock;
-    private int seconds;
-    private int score;
-    private int tempSec;
-    private int clock;
+    private float clock;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,33 +22,42 @@ public class ScoreHandler : MonoBehaviour
         gClock = GetComponent<GameClock>();
         timeScoreMultiplier = 2;
         timeBetweenPoints = 3;
+        pController.SetHighScore(hsHandler.GetHighestScore());
+        SetHighScoreText();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //clock = gClock.GetGameClock();
         ScoreFromTimer();
+        SetCurrScoreText();
+    }
+    public void SetHighScoreText()
+    {
+        highScore.text = pController.GetHighScore().ToString();
+    }
+    public void SetCurrScoreText()
+    {
         currScore.text = pController.GetPlayerScore().ToString();
+        if (hsHandler.IsGreaterThanFifthPlace(pController.GetPlayerScore()))
+        {
+            pController.SetHighScore(pController.GetPlayerScore());
+            hsHandler.AddNewHighScore(pController.GetPlayerScore());
+            SetHighScoreText();
+            //add function for playerprefs
+        }
     }
     private void ScoreFromTimer()
     {
         //every 3 seconds player earns some points based off the multiplier with a base of 2
         //both the intervals and multiplier can be changed
-        clock = gClock.GetGameClock();
+        //I started with this method then trying to switch to Time.deltaTime
+        //but that breaks the function for some reason. Might have to check into this later.
+        clock = gClock.GetPassedClock();
         if(clock >= timeBetweenPoints)
         {
-            //tempSec++;
             pController.UpdatePlayerScore(timeBetweenPoints * timeScoreMultiplier);
             gClock.ResetPassedClock();
         }
-        //tempSec = tempSec * timeBetweenPoints;
-        //score = (tempSec * timeBetweenPoints) * timeScoreMultiplier;
-        ////currScore.text = score.ToString();
-        //pController.UpdatePlayerScore(score);
-        
-
-        //Debug.Log(score);
-
     }
 }

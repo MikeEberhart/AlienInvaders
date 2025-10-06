@@ -21,6 +21,7 @@ TagManager:
   - Missle
   - MisslePowerUp
   - ShieldPowerUp
+  - Coin
   layers:
   - Default
   - TransparentFX

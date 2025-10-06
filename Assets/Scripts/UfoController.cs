@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class UfoController : MonoBehaviour
 {
-    //private PlayerController pController;
     private UfoData ufoData;
     private BasicWeaponHandler weaponHandler;
     private Rigidbody2D rb;
-    public float speed;
-    private float startXPos;
-    private float endXPos;
     private float time;
+
+    //public float speed;
+    //private float startXPos;
+    //private float endXPos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,8 +17,8 @@ public class UfoController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         weaponHandler = GetComponent<BasicWeaponHandler>();
         ufoData = GetComponent<UfoData>();
-        startXPos = transform.position.x;
-        endXPos = startXPos - 10f;
+        //startXPos = transform.position.x;
+        //endXPos = startXPos - 10f;
         //pController = PlayerController.playerJet.GetComponent<PlayerController>();
 
     }
@@ -27,8 +27,10 @@ public class UfoController : MonoBehaviour
     void Update()
     {
         MoveLeft();
-        FirePlasmaGun();
-        
+        if(gameObject.transform.position.x <= 14f)
+        {
+            FirePlasmaGun();
+        }
     }
     private void FirePlasmaGun()
     {
@@ -53,7 +55,7 @@ public class UfoController : MonoBehaviour
         //    rb.linearVelocity = new Vector2(0, 0);
         //}
 
-        rb.linearVelocity = new Vector2(speed * -1, 0);
+        rb.linearVelocity = new Vector2(ufoData.GetUfoSpeed() * -1, 0);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

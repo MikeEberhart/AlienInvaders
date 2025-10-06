@@ -826,7 +826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9df795b0603a744ae12a73df0cd025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UfoController
-  speed: 3
 --- !u!114 &2746414015695231248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,8 +854,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UfoData
   ufoStartingHealth: 4
   healthBar: {fileID: 5239449231107803933}
-  ufoValue: 2
+  ufoValue: 10
   fireRate: 2
+  speed: 2
 --- !u!1 &3387436421488708541
 GameObject:
   m_ObjectHideFlags: 0

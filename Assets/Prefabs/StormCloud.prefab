@@ -325,5 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ecdbe1326a16a849843459bcc44d040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StormController
-  speed: 1
-  yMidPoint: 2.5
+  speed: 1.2
+  yMidPoint: 3
+  limitDiff: 2

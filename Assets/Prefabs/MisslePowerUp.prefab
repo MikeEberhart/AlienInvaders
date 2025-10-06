@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 3579124871210327155}
   - component: {fileID: 2481390915104395352}
   - component: {fileID: 446979468937141124}
+  - component: {fileID: -5237377369671556581}
   m_Layer: 0
   m_Name: MisslePowerUp
   m_TagString: MisslePowerUp
@@ -259,3 +260,15 @@ PolygonCollider2D:
       - {x: 0.65999997, y: -0.90999997}
       - {x: 0.85999995, y: -0.7}
   m_UseDelaunayMesh: 0
+--- !u!114 &-5237377369671556581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4056678348899447826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784e9fc01c6c6fa47826708dacb7b303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpController

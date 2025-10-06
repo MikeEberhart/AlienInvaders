@@ -21,7 +21,7 @@ public class StormSpawner : MonoBehaviour
         if (time >= delay)
         {
             SpawnStorm();
-            //reset time so the delay is set for the next object to spawn
+            //reset time so the bronzeUfoTimer is set for the next object to spawn
             time = 0f;
         }
     }
